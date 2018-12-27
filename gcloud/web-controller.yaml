@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: web
+  name: web-controller
+spec:
+  replicas: 2
+  selector:
+    name: web
+  template:
+    metadata:
+      labels:
+        name: web
+    spec:
+      containers:
+        - image: gcr.io/mern-k8s/mern-k8s
+          name: web
+          ports:
+            - containerPort: 5000
+              name: http-server
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: WAIT_HOSTS
+              value: mern-k8s-mongo:27017
+            - name: MONGO_URL
+              value: mern-k8s-mongo

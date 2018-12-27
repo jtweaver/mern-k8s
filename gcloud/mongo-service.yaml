@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: mern-k8s-mongo
+  name: mern-k8s-mongo
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  selector:
+    name: mern-k8s-mongo
